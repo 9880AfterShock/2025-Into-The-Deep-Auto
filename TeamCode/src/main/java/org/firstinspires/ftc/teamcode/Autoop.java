@@ -22,7 +22,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 @Autonomous(name = "BLUE_TEST_AUTO_PIXEL", group = "Autonomous")
 public class Autoop extends LinearOpMode {
-    public class Lift {
+    /*public class Lift {
         private DcMotorEx lift;
 
         public Lift(HardwareMap hardwareMap) {
@@ -78,9 +78,9 @@ public class Autoop extends LinearOpMode {
         public Action liftDown(){
             return new LiftDown();
         }
-    }
+    }*/
 
-    public class Claw {
+    /*public class Claw {
         private Servo claw;
 
         public Claw(HardwareMap hardwareMap) {
@@ -108,14 +108,14 @@ public class Autoop extends LinearOpMode {
         public Action openClaw() {
             return new OpenClaw();
         }
-    }
+    }*/
 
     @Override
     public void runOpMode() {
         Pose2d initialPose = new Pose2d(11.8, 61.7, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
-        Claw claw = new Claw(hardwareMap);
-        Lift lift = new Lift(hardwareMap);
+        //Claw claw = new Claw(hardwareMap);
+        //Lift lift = new Lift(hardwareMap);
 
         // vision here that outputs position
         int visionOutputPosition = 1;
@@ -149,7 +149,7 @@ public class Autoop extends LinearOpMode {
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
-        Actions.runBlocking(claw.closeClaw());
+        //Actions.runBlocking(claw.closeClaw());
 
 
         while (!isStopRequested() && !opModeIsActive()) {
@@ -177,9 +177,9 @@ public class Autoop extends LinearOpMode {
         Actions.runBlocking(
                 new SequentialAction(
                         trajectoryActionChosen,
-                        lift.liftUp(),
-                        claw.openClaw(),
-                        lift.liftDown(),
+                        //lift.liftUp(),
+                        //claw.openClaw(),
+                        //lift.liftDown(),
                         trajectoryActionCloseOut
                 )
         );
